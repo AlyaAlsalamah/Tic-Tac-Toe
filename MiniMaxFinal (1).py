@@ -1,3 +1,9 @@
+# Tic Tac Toe game with MiniMax algorithm
+#
+
+
+
+
 from asyncio.windows_events import INFINITE
 import timeit
 from tkinter import *
@@ -107,7 +113,7 @@ def desiableButtons():
     for i in range(1, len(buttons)):
         buttons[i].state(['disabled'])
 
-
+# Method that takes a letter which indicates who's the current player, and a position to place the letter on.
 def assign(letter, position):
     global tree_depth
     if board[position] == ' ':
@@ -147,6 +153,7 @@ def ButtonClick(id):
         end = timeit.default_timer()
         total+= end-start 
 
+# Human moves happens here and sending the move to the assign method to assign the move.
 def Human(position):
     global playerTurn
     playerTurn = False
@@ -154,7 +161,7 @@ def Human(position):
 
     return
 
-
+#Computer move that will be sent to the "AI" algorithm to decide if the move is efficient.
 def Computer():
     MaxScore = -INFINITE
     Move = 0
@@ -162,7 +169,7 @@ def Computer():
         if board[key] == ' ':
             board[key] = computer
 
-            score = min_value(board,depth-1)
+            score = min_value(board,depth-1) # Sending values to MiniMax 
             board[key] = ' '
 
             if score > MaxScore:
